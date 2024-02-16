@@ -8,7 +8,7 @@ RUN apt-get update && \
 WORKDIR /app
 
 # Copy the JAR file into the container
-COPY demo/target/demo-1.0.0.jar /app/demo.jar
+COPY target/demo-1.0.0.jar /app/demo.jar
 
 # Command to run the Java application
 CMD ["java", "-jar", "demo.jar"]

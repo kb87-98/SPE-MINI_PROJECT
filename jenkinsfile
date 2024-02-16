@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE_NAME = 'Scientific_Calculator'
+        DOCKER_IMAGE_NAME = 'scientific_calculator'
         GITHUB_REPO_URL = 'https://github.com/kb87-98/SPE-MINI_PROJECT.git'
     }
 
@@ -38,8 +38,8 @@ pipeline {
             steps {
                 script{
                     docker.withRegistry('', 'DockerHubCred') {
-                    sh 'docker tag Scientific_Calculator kb1110/Scientific_Calculator:latest'
-                    sh 'docker push kb1110/Scientific_Calculator'
+                    sh 'docker tag scientific_calculator kb1110/scientific_calculator:latest'
+                    sh 'docker push kb1110/scientific_calculator'
                     }
                  }
             }

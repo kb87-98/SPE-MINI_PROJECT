@@ -15,6 +15,15 @@ pipeline {
                 }
             }
         }
+        
+        stage('Compile') {
+            steps {
+                script {
+                    // Compile the Java code using Maven
+                    sh 'mvn package'
+                }
+            }
+        }
 
         stage('Build Docker Image') {
             steps {
@@ -36,7 +45,7 @@ pipeline {
             }
         }
 
-   stage('Run Ansible Playbook') {
+        stage('Run Ansible Playbook') {
             steps {
                 script {
                     ansiblePlaybook(

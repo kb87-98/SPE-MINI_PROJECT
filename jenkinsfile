@@ -1,0 +1,51 @@
+pipeline {
+    agent any
+
+    environment {
+        DOCKER_IMAGE_NAME = 'Scientific_Calculator'
+        GITHUB_REPO_URL = 'https://github.com/kb87-98/SPE-MINI_PROJECT.git'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                script {
+                    // Checkout the code from the GitHub repository
+                    git branch: 'main', url: "${GITHUB_REPO_URL}"
+                }
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    // Build Docker image
+                    docker.build("${DOCKER_IMAGE_NAME}", '.')
+                }
+            }
+        }
+
+        stage('Push Docker Images') {
+            steps {
+                script{
+                    docker.withRegistry('', 'DockerHubCred') {
+                    sh 'docker tag Scientific_Calculator kb1110/Scientific_Calculator:latest'
+                    sh 'docker push kb1110/Scientific_Calculator'
+                    }
+                 }
+            }
+        }
+
+   stage('Run Ansible Playbook') {
+            steps {
+                script {
+                    ansiblePlaybook(
+                        playbook: 'deploy.yml',
+                        inventory: 'inventory'
+                     )
+                }
+            }
+        }
+
+    }
+}

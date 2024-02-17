@@ -61,10 +61,11 @@ pipeline {
         always {
             script {
                 // Send email notification regardless of build result
-                emailext subject: 'Pipeline Build ${currentBuild.currentResult}',
-                          body: 'Pipeline Build ${currentBuild.currentResult}: ${BUILD_URL}',
+                emailext subject: "Pipeline Build ${currentBuild.currentResult}",
+                          body: "Pipeline Build ${currentBuild.currentResult}: ${BUILD_URL}",
                           to: 'Kuldip.Bhatale@iiitb.ac.in'
             }
         }
     }
+
 }

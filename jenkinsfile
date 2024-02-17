@@ -20,7 +20,7 @@ pipeline {
             steps {
                 script {
                     // Compile the Java code using Maven
-                    sh 'mvn package'
+                    sh 'vn package'
                 }
             }
         }

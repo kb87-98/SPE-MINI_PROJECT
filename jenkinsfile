@@ -58,14 +58,14 @@ pipeline {
     }
 
     post {
-        always { // This block will always execute, regardless of the build result
+        always {
             emailext (
                 body: 'A Test EMail', // Body of the email
-                recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], // Specifies recipients: developers and the person who requested the build
                 subject: 'Test' // Subject of the email
             )
         }
     }
+
 
 
 }

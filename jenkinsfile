@@ -57,14 +57,15 @@ pipeline {
         }
     }
 
-    post {
-        always {
-            emailext (
-                body: 'A Test EMail', // Body of the email
-                subject: 'Test' // Subject of the email
-            )
+       post {
+            always {
+                emailext (
+                    body: 'A Test EMail', // Body of the email
+                    subject: 'Test', // Subject of the email
+                    to: '$DEFAULT_RECIPIENTS' // Use $DEFAULT_RECIPIENTS variable to specify default recipients
+                )
+            }
         }
-    }
 
 
 

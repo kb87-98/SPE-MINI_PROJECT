@@ -4,7 +4,6 @@ pipeline {
     environment {
         DOCKER_IMAGE_NAME = 'scientific_calculator'
         GITHUB_REPO_URL = 'https://github.com/kb87-98/SPE-MINI_PROJECT.git'
-    
     }
 
     stages {
@@ -21,7 +20,7 @@ pipeline {
             steps {
                 script {
                     // Compile the Java code using Maven
-                    sh 'vn package'
+                    sh 'vn package' 
                 }
             }
         }
@@ -39,10 +38,10 @@ pipeline {
             steps {
                 script{
                     docker.withRegistry('', 'DockerHubCred') {
-                    sh 'docker tag scientific_calculator kb1110/scientific_calculator:latest'
-                    sh 'docker push kb1110/scientific_calculator'
+                        sh 'docker tag scientific_calculator kb1110/scientific_calculator:latest'
+                        sh 'docker push kb1110/scientific_calculator'
                     }
-                 }
+                }
             }
         }
 
@@ -52,15 +51,16 @@ pipeline {
                     ansiblePlaybook(
                         playbook: 'deploy.yml',
                         inventory: 'inventory'
-                     )
+                    )
                 }
             }
         }
     }
+
     post {
         changed {
             script {
-                if (currentBuild.currentResult == 'FAILURE') { // Other values: SUCCESS, UNSTABLE
+                if (currentBuild.currentResult == 'FAILURE') {
                     // Send an email only if the build status has changed from green/unstable to red
                     emailext subject: '$DEFAULT_SUBJECT',
                         body: '$DEFAULT_CONTENT',
@@ -70,5 +70,4 @@ pipeline {
             }
         }
     }
-
 }

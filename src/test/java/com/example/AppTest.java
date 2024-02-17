@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 public class AppTest {
+    //This are test cases for SCientific Calculator App
 
     @Test
     public void testSquareRoot() {

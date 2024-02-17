@@ -4,6 +4,7 @@ pipeline {
     environment {
         DOCKER_IMAGE_NAME = 'scientific_calculator'
         GITHUB_REPO_URL = 'https://github.com/kb87-98/SPE-MINI_PROJECT.git'
+        DEFAULT_RECIPIENTS = 'Kuldip.Bhatale@iiitb.ac.in'
     }
 
     stages {
@@ -62,7 +63,7 @@ pipeline {
                 emailext (
                     body: 'A Test EMail', // Body of the email
                     subject: 'Test', // Subject of the email
-                    to: '$DEFAULT_RECIPIENTS' // Use $DEFAULT_RECIPIENTS variable to specify default recipients
+                    to: '${DEFAULT_RECIPIENTS}' // Use $DEFAULT_RECIPIENTS variable to specify default recipients
                 )
             }
         }

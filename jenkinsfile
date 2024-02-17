@@ -57,7 +57,7 @@ pipeline {
             }
         }
     }
-        post {
+    post {
         changed {
             script {
                 if (currentBuild.currentResult == 'FAILURE') { // Other values: SUCCESS, UNSTABLE

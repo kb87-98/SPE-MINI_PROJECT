@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_IMAGE_NAME = 'scientific_calculator'
         GITHUB_REPO_URL = 'https://github.com/kb87-98/SPE-MINI_PROJECT.git'
-        EMAIL_TO = 'Kuldip.Bhatale@iiitb.ac.in'
+        EMAIL_TO = 'ankushpatil488@gmail.com'
     }
 
     stages {
@@ -21,7 +21,7 @@ pipeline {
             steps {
                 script {
                     // Compile the Java code using Maven
-                    sh 'vn package'
+                    sh 'mvn package'
                 }
             }
         }
@@ -59,10 +59,10 @@ pipeline {
     }
     post {
         success {
-            emailext body: 'Check console output at $BUILD_URL to view the results. \n\n ${CHANGES} \n\n -------------------------------------------------- \n${BUILD_LOG, maxLines=100, escapeHtml=false}', 
-                to: "${EMAIL_TO}", 
-                subject: 'Build Success in Jenkins: $PROJECT_NAME - #$BUILD_NUMBER'
-        }    
+            emailext body: 'Build successful.Check console output at $BUILD_URL to view the results. \n\n ${CHANGES} \n\n -------------------------------------------------- \n${BUILD_LOG, maxLines=100, escapeHtml=false}', 
+                    to: "${EMAIL_TO}", 
+                    subject: 'Build successful in Jenkins: $PROJECT_NAME - #$BUILD_NUMBER'
+        }
         failure {
             emailext body: 'Check console output at $BUILD_URL to view the results. \n\n ${CHANGES} \n\n -------------------------------------------------- \n${BUILD_LOG, maxLines=100, escapeHtml=false}', 
                     to: "${EMAIL_TO}", 
@@ -78,5 +78,6 @@ pipeline {
                     to: "${EMAIL_TO}", 
                     subject: 'Jenkins build is back to normal: $PROJECT_NAME - #$BUILD_NUMBER'
         }
+        
     }
 }

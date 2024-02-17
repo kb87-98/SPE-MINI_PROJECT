@@ -58,12 +58,20 @@ pipeline {
     }
 
     post {
-        always {
+        changed {
             script {
-                // Send email notification regardless of build result
-                emailext subject: "Pipeline Build ${currentBuild.currentResult}",
-                          body: "Pipeline Build ${currentBuild.currentResult}: ${BUILD_URL}",
-                          to: 'Kuldip.Bhatale@iiitb.ac.in'
+                if (currentBuild.currentResult == 'FAILURE') { // Other values: SUCCESS, UNSTABLE
+                    // Send an email only if the build status has changed from green/unstable to red
+                    emailext subject: '$DEFAULT_SUBJECT',
+                        body: '$DEFAULT_CONTENT',
+                        recipientProviders: [
+                            [$class: 'CulpritsRecipientProvider'],
+                            [$class: 'DevelopersRecipientProvider'],
+                            [$class: 'RequesterRecipientProvider']
+                        ], 
+                        replyTo: '$DEFAULT_REPLYTO',
+                        to: '$DEFAULT_RECIPIENTS'
+                }
             }
         }
     }

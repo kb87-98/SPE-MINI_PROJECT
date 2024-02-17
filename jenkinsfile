@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_IMAGE_NAME = 'scientific_calculator'
         GITHUB_REPO_URL = 'https://github.com/kb87-98/SPE-MINI_PROJECT.git'
-        EMAIL_TO = 'Kuldip.Bhatale@iiitb.ac.in'
+        EMAIL_TO = 'kuldipbhatale111@gmail.com'
     }
 
     stages {

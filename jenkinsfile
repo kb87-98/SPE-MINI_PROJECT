@@ -74,13 +74,13 @@ pipeline {
         // Check if the build status changed from failure to success
         script {
             def previousBuildStatus = currentBuild.previousBuild?.result ?: 'SUCCESS'
-            if (currentBuild.result == 'SUCCESS' && previousBuildStatus == 'FAILURE') {
-                emailext body: 'Check console output at $BUILD_URL to view the results.', 
-                        to: "${EMAIL_TO}", 
-                        subject: 'Jenkins build is back to normal: $PROJECT_NAME - #$BUILD_NUMBER'
+                if (currentBuild.result == 'SUCCESS' && previousBuildStatus == 'FAILURE') {
+                    emailext body: 'Check console output at $BUILD_URL to view the results.', 
+                            to: "${EMAIL_TO}", 
+                            subject: 'Jenkins build is back to normal: $PROJECT_NAME - #$BUILD_NUMBER'
+                }
         }
     }
-}
 
 
 }

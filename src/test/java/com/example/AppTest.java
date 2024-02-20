@@ -9,7 +9,7 @@ public class AppTest {
 
     @Test
     public void testSquareRoot() {
-        assertEquals(1.0, Operation.squareRoot(4), 0.001); // Test square root of 4
+        assertEquals(2.0, Operation.squareRoot(4), 0.001); // Test square root of 4
         assertEquals(3.0, Operation.squareRoot(9), 0.001); // Test square root of 9
         assertEquals(4.0, Operation.squareRoot(16), 0.001); // Test square root of 16
     }

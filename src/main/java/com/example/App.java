@@ -45,9 +45,9 @@ public class App {
                     System.out.println("Invalid choice!");
             }
 
-            System.out.println("\nDo you want to continue? (yes/no)");
+            System.out.println("\nDo you want to continue? (y/n)");
             String continueChoice = scanner.next();
-            if (!continueChoice.equalsIgnoreCase("yes")) {
+            if (!continueChoice.equalsIgnoreCase("y")) {
                 continueExecution = false;
             }
         }

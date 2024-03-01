@@ -11,5 +11,5 @@ WORKDIR /app
 COPY target/demo-1.0.0.jar /app/demo.jar
 
 # Command to run the Java application
-#CMD ["java", "-jar", "demo.jar"]
+CMD ["java", "-jar", "demo.jar"]
 
